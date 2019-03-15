@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 
 const useSetState = initState => {
   const [state, setState] = React.useState(initState);
@@ -11,4 +11,10 @@ const useSetState = initState => {
       }));
     }, [])
   ];
+};
+
+const useOnDidUpdate = cb => {
+  useEffect(() => {
+    typeof cb === "function" && cb();
+  });
 };
