@@ -18,3 +18,11 @@ const useOnDidUpdate = cb => {
     typeof cb === "function" && cb();
   });
 };
+
+const usePreState = state => {
+  const ref = React.useRef();
+  useOnDidUpdate(() => {
+    ref.current = state;
+  });
+  return ref.current;
+};
