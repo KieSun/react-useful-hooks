@@ -13,10 +13,16 @@ const useSetState = initState => {
   ];
 };
 
-const useOnDidUpdate = cb => {
+const useOnDidUpdate = (cb, dep) => {
   useEffect(() => {
     typeof cb === "function" && cb();
-  });
+  }, dep);
+};
+
+const useOnWillUnmount = (cb, dep) => {
+  useEffect(() => {
+    return typeof cb === "function" && cb();
+  }, dep);
 };
 
 const usePreState = state => {
